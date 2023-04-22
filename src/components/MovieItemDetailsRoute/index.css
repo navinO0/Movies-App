@@ -166,7 +166,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-
+  align-self: center;
   padding-left: 30px;
   justify-content: initial;
   padding-left: 0px;
@@ -175,6 +175,8 @@
 .similar-movies-list {
   width: 85%;
   padding-left: 30px;
+  display: flex;
+  flex-direction: column;
 }
 .movie-details-card {
   width: 280px;
@@ -291,7 +293,8 @@
     margin-bottom: 0px;
   }
   .details-movies-ul-list-container {
-    padding-left: 0px;
+    align-self: center;
+    padding-left: 15px;
   }
 
   .movie-item-details-container {
