@@ -65,13 +65,27 @@
 .sm-list {
   display: none;
 }
+.lg-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 @media screen and (max-width: 576px) {
   .no-vids-image {
     height: 250px;
   }
   .sm-list {
-    display: block;
+    display: flex;
+    width: 100vw;
+
+    justify-content: flex-start;
+
+    flex-wrap: wrap;
+  }
+  .popular-main-contaier {
+    width: 100%;
+    padding: 0px;
   }
   .lg-list {
     display: none;

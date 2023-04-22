@@ -10,7 +10,7 @@
 }
 .pagination-container {
   display: flex;
-  width: auto;
+  width: 100%;
   justify-content: space-between;
   list-style: none;
   align-items: center;
@@ -80,6 +80,9 @@
   min-height: 65vh;
   height: auto;
   padding: 10px;
+
+  justify-content: center;
+  width: 100%;
 
   padding-left: 30px;
 }

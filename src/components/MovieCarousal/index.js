@@ -16,37 +16,6 @@ const getApiStatus = {
   initial: 'INITIAL',
 }
 
-const settings = {
-  dots: false,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 5,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 4,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      },
-    },
-  ],
-}
-
 class MovieCarousal extends Component {
   state = {trendingVideos: [], apistatus: getApiStatus.initial}
 
@@ -142,7 +111,62 @@ class MovieCarousal extends Component {
   }
 
   renderSlider = () => {
+    const SampleNextArrow = props => {
+      const {className, style} = props
+      return (
+        <div
+          className={className}
+          style={{...style, display: 'none', background: 'red'}}
+        />
+      )
+    }
+
+    const SamplePrevArrow = props => {
+      const {className, style} = props
+      return (
+        <div
+          className={className}
+          style={{...style, display: 'none', background: 'green'}}
+        />
+      )
+    }
     const {trendingVideos} = this.state
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 5,
+
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
+        },
+        {
+          breakpoint: 480,
+
+          settings: {
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
+        },
+      ],
+    }
 
     return (
       <div className="slider-main-container">
