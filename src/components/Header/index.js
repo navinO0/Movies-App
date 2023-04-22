@@ -35,7 +35,8 @@ class Header extends Component {
     onChangeSearchKey(event.target.value)
   }
 
-  onclickSearch = () => {
+  onclickSearch = event => {
+    event.preventDefault()
     const {onClickSearchButton} = this.props
     onClickSearchButton()
   }
@@ -44,7 +45,7 @@ class Header extends Component {
     const {searchEn, searchekey} = this.props
     if (searchEn !== undefined) {
       return (
-        <div className="seach-comp-container">
+        <form className="search-comp-container" onSubmit={this.onclickSearch}>
           <input
             type="search"
             className="search-comp"
@@ -53,25 +54,25 @@ class Header extends Component {
             onChange={this.onChangeInputWord}
           />
           <button
-            type="button"
+            type="submit"
             testid="searchButton"
             onClick={this.onclickSearch}
             className="search-icon-container"
           >
-            <HiOutlineSearch className="seach-icon-search" />
+            <HiOutlineSearch className="search-icon-search" />
           </button>
-        </div>
+        </form>
       )
     }
     return (
       <button
         type="button"
-        className="not-serch-container"
+        className="not-search-container"
         onClick={this.onClickSearchBtn}
         testid="searchButton"
       >
         <Link to="/search" className="link-item">
-          <HiOutlineSearch className="seach-icon" />
+          <HiOutlineSearch className="search-icon" />
         </Link>
       </button>
     )
@@ -131,7 +132,7 @@ class Header extends Component {
                     />
                   </button>
                 </div>
-                <div className="heaer-right">
+                <div className="header-right">
                   {this.searchComponent()}
                   <Link to="/account" className="nav-link-item">
                     <img

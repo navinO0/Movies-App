@@ -46,3 +46,7 @@
 .coution-image {
   height: 40px;
 }
+
+.slider-main-container {
+  min-height: 100px;
+}

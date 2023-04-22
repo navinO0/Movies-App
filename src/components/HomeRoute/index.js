@@ -153,10 +153,11 @@ class HomeRoute extends Component {
     const {homePoster} = this.state
     const {backdropPath, title, overview} = homePoster
     return (
-      <div
-        className="movie-banner-home"
-        style={{
-          backgroundImage: `
+      <>
+        <div
+          className="movie-banner-home"
+          style={{
+            backgroundImage: `
             linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
@@ -165,22 +166,24 @@ class HomeRoute extends Component {
     #181818 98.68%,
     #181818 108.61%
   ),url(${backdropPath})`,
-        }}
-      >
-        <Header />
-        <div className="home-banner-content-super-container">
-          <div className="banner-content-container">
-            <h1 className="home-movie-item-details-banner-movie-name">
-              {title}
-            </h1>
+          }}
+        >
+          <Header />
 
-            <p className="home-movie-description">{overview}</p>
-            <button type="button" className="home-play-banner-container">
-              play
-            </button>
+          <div className="home-banner-content-super-container">
+            <div className="banner-content-container">
+              <h1 className="home-movie-item-details-banner-movie-name">
+                {title}
+              </h1>
+
+              <p className="home-movie-description">{overview}</p>
+              <button type="button" className="home-play-banner-container">
+                play
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )
   }
 

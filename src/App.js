@@ -14,7 +14,7 @@ import NotFound from './components/NotFoundRoute'
 import MoviesContext from './MoviesContext/MoviesContext'
 
 class App extends Component {
-  state = {wacthlist: [], popularList: []}
+  state = {popularList: []}
 
   addToWatchList = movie => {
     const {watchlist} = this.state
@@ -34,7 +34,7 @@ class App extends Component {
 
   render() {
     const {watchlist, popularList} = this.state
-    console.log(popularList)
+
     return (
       <MoviesContext.Provider
         value={{

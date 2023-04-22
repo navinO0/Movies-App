@@ -33,7 +33,7 @@
     "react-slick": "0.28.1",
     "react-slick-slider": "0.15.10",
     "slick-carousel": "1.8.1",
-    "styled-components": "^5.0.0",
+    "styled-components": "^5.3.6",
     "sweetpagination": "1.0.15"
   },
   "devDependencies": {

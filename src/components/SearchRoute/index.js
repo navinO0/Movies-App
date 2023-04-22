@@ -21,11 +21,13 @@ class SearchRoute extends Component {
     fetchedList: [],
     vidsLength: 1,
     apistatus: getApiStatus.initial,
+    viewKey: '',
   }
 
   getSearchedData = async () => {
     this.setState({apistatus: getApiStatus.inprogress})
     const {searchekey} = this.state
+    this.setState({viewKey: searchekey})
     const token = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/movies-app/movies-search?search=${searchekey}`
     const options = {
@@ -66,7 +68,7 @@ class SearchRoute extends Component {
   }
 
   renderNoVids = () => {
-    const {searchekey} = this.state
+    const {viewKey} = this.state
     return (
       <div className="no-vid-main-container">
         <div className="no-vids-sub-container">
@@ -77,7 +79,7 @@ class SearchRoute extends Component {
               className="no-vids-image"
             />
           </div>
-          <p className="try-again-text">{`Your search for ${searchekey} did not find any matches`}</p>
+          <p className="try-again-text">{`Your search for ${viewKey} did not find any matches`}</p>
         </div>
       </div>
     )
@@ -146,7 +148,7 @@ class SearchRoute extends Component {
   }
 
   render() {
-    const {searchekey, vidsLength} = this.state
+    const {searchekey, viewKey, vidsLength} = this.state
     const novideos = vidsLength === 0
     const {location} = this.props
     const {pathname} = location
@@ -158,6 +160,7 @@ class SearchRoute extends Component {
           searchEn={searchEn}
           onChangeSearchKey={this.onChangeSearchKey}
           searchekey={searchekey}
+          viewKey={viewKey}
           onClickSearchButton={this.onClickSearchButton}
         />
         {novideos ? this.renderNoVids() : this.renderMovieDetailsUl()}

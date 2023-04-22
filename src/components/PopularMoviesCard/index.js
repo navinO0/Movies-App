@@ -7,9 +7,13 @@ const PopularMoviesCard = props => {
   const {posterPath, title, id} = eachOne
 
   return (
-    <li className="popular-movie-card-container">
+    <li className="popular-movie-card-container" key={id}>
       <Link to={`/movies/${id}`} className="link-item">
-        <img src={posterPath} alt={title} className="popular-card-image" />
+        <img
+          src={posterPath}
+          alt={title}
+          className="popular-card-image hover-zoom"
+        />
       </Link>
     </li>
   )

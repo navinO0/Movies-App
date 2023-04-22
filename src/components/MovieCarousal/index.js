@@ -6,9 +6,8 @@ import Loader from 'react-loader-spinner'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-import SliderMovieCard from '../SliderMovieCard'
-
 import './index.css'
+import PopularMoviesCard from '../PopularMoviesCard'
 
 const getApiStatus = {
   success: 'SUCCESS',
@@ -22,27 +21,27 @@ const settings = {
   infinite: false,
   speed: 500,
   slidesToShow: 5,
-  slidesToScroll: 1,
+  slidesToScroll: 5,
   responsive: [
     {
       breakpoint: 1024,
       settings: {
         slidesToShow: 4,
-        slidesToScroll: 1,
+        slidesToScroll: 4,
       },
     },
     {
       breakpoint: 600,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
       },
     },
     {
       breakpoint: 480,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
       },
     },
   ],
@@ -146,24 +145,13 @@ class MovieCarousal extends Component {
     const {trendingVideos} = this.state
 
     return (
-      <>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          charset="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
+      <div className="slider-main-container">
         <Slider {...settings}>
           {trendingVideos.map(eachOne => (
-            <SliderMovieCard key={eachOne.id} eachOne={eachOne} />
+            <PopularMoviesCard key={eachOne.id} eachOne={eachOne} />
           ))}
         </Slider>
-      </>
+      </div>
     )
   }
 

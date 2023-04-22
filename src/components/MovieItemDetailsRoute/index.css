@@ -4,6 +4,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 }
 .movie-banner-home {
   background-size: cover;
@@ -36,13 +37,17 @@
   list-style: none;
 }
 .movie-item-details-banner-movie-name {
+  animation: text-flicker 5s linear infinite;
+
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 38px;
 
   color: #e2e8f0;
-  margin-bottom: 0px;
+}
+#offset {
+  animation: letter-flicker 2s linear infinite;
 }
 .movie-duration-adult-year {
   display: flex;
@@ -72,24 +77,29 @@
   line-height: 27px;
   margin-top: 0px;
   color: #e2e8f0;
+  text-shadow: 2px 2px #413b3b;
 }
 .play-banner-container {
-  padding-top: 7px;
-  padding-bottom: 7px;
+  width: 100px;
+  height: 30px;
 
-  margin-right: 10px;
   background: #ffffff;
   border-radius: 4px;
   border: none;
   cursor: pointer;
   outline: none;
-  padding-left: 20px;
-  padding-right: 20px;
+
   flex: none;
   order: 0;
   flex-grow: 0;
   margin-bottom: 40px;
-  margin-top: 6px;
+  transition: all ease 200ms;
+}
+
+.play-banner-container:hover {
+  color: rgba(252, 249, 249, 0.932);
+  background-color: rgb(241, 21, 21);
+  box-shadow: inset 0 0 0 rgba(247, 6, 6, 0.3), 0 0 1.2em rgba(243, 6, 6, 0.5);
 }
 
 .play-banner-container-add {
@@ -176,6 +186,7 @@
   font-size: 24px;
   line-height: 31px;
   color: #e2e8f0;
+  text-shadow: 2px 1px #fd0707;
 }
 .react-loader-super-container {
   display: flex;
@@ -331,5 +342,101 @@
     line-height: 18px;
     margin-top: 0px;
     color: #e2e8f0;
+  }
+}
+
+@keyframes letter-flicker {
+  0% {
+    opacity: 0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  2% {
+    opacity: 0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  4% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+
+  19% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  21% {
+    opacity: 0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  23% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+
+  80% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  83% {
+    opacity: 0.4;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  87% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+
+  2% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  8% {
+    opacity: 0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  9% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  12% {
+    opacity: 0.1;
+    text-shadow: 0px 0px rgba(242, 22, 22, 1);
+  }
+  20% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  25% {
+    opacity: 0.3;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  30% {
+    opacity: 1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+
+  70% {
+    opacity: 0.7;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+
+  72% {
+    opacity: 0.2;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+
+  77% {
+    opacity: 0.9;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  100% {
+    opacity: 0.9;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
   }
 }
