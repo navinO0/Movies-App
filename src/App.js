@@ -32,12 +32,22 @@ class App extends Component {
     const {watchlist} = this.state
     const movieObject = watchlist.find(eachOne => eachOne.id === movie.id)
     if (movieObject === undefined) {
-      this.setState(prevState => ({watchlist: [...prevState.watchlist, movie]}))
+      this.setState(
+        prevState => ({watchlist: [...prevState.watchlist, movie]}),
+        this.storeDataInStr,
+      )
     } else {
-      this.setState({
-        watchlist: watchlist.filter(eachOne => eachOne.id !== movie.id),
-      })
+      this.setState(
+        {
+          watchlist: watchlist.filter(eachOne => eachOne.id !== movie.id),
+        },
+        this.storeDataInStr,
+      )
     }
+  }
+
+  storeDataInStr = () => {
+    const {watchlist} = this.state
     const stringifyList = JSON.stringify(watchlist)
     localStorage.setItem('watchLaterList', stringifyList)
   }
