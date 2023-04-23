@@ -25,8 +25,8 @@
 
 @media screen and (max-width: 576px) {
   .popular-card-image {
-    height: 19.8vh;
-    width: 25.8vw;
+    height: 20.8vh;
+    width: 29vw;
     flex-grow: 1;
     border-radius: 8px;
     padding: 0px 3px 0px 3px;

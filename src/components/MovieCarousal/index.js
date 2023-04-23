@@ -28,37 +28,44 @@ class MovieCarousal extends Component {
   }
 
   getOriginalsData = async () => {
-    const {apiUrl} = this.props
-    this.setState({apistatus: getApiStatus.inprogress})
-
-    const token = Cookies.get('jwt_token')
-
-    const url = apiUrl
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      method: 'GET',
-    }
-    const response = await fetch(url, options)
-    if (response.ok) {
-      const trendingData = await response.json()
-      const resultData = trendingData.results
-
-      const modifiedTrendingData = resultData.map(e => ({
-        backdropPath: e.backdrop_path,
-        id: e.id,
-        overview: e.overview,
-        posterPath: e.poster_path,
-        title: e.title,
-      }))
-
+    const {movieListDets, apiUrl} = this.props
+    if (apiUrl === undefined) {
       this.setState({
-        trendingVideos: modifiedTrendingData,
+        trendingVideos: movieListDets,
         apistatus: getApiStatus.success,
       })
     } else {
-      this.setState({apistatus: getApiStatus.failure})
+      this.setState({apistatus: getApiStatus.inprogress})
+
+      const token = Cookies.get('jwt_token')
+
+      const url = apiUrl
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        method: 'GET',
+      }
+      const response = await fetch(url, options)
+      if (response.ok) {
+        const trendingData = await response.json()
+        const resultData = trendingData.results
+
+        const modifiedTrendingData = resultData.map(e => ({
+          backdropPath: e.backdrop_path,
+          id: e.id,
+          overview: e.overview,
+          posterPath: e.poster_path,
+          title: e.title,
+        }))
+
+        this.setState({
+          trendingVideos: modifiedTrendingData,
+          apistatus: getApiStatus.success,
+        })
+      } else {
+        this.setState({apistatus: getApiStatus.failure})
+      }
     }
   }
 

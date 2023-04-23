@@ -81,7 +81,7 @@
 }
 .play-banner-container {
   width: 100px;
-  height: 30px;
+  height: 37px;
 
   background: #ffffff;
   border-radius: 4px;
@@ -93,7 +93,7 @@
   order: 0;
   flex-grow: 0;
   margin-bottom: 40px;
-  transition: all ease 200ms;
+  transition: all ease 400ms;
 }
 
 .play-banner-container:hover {
@@ -124,6 +124,15 @@
   font-size: 10px;
   font-weight: 600;
   margin-top: 0px;
+  transition: all ease 400ms;
+}
+
+.play-banner-container-add:hover {
+  color: rgba(248, 7, 7, 0.973);
+  text-shadow: 0 0 10px rgb(247, 7, 7);
+  color: #fc1008;
+  text-shadow: inset 2 2 2 rgba(247, 6, 6, 0.985),
+    0 0 1.2em rgba(243, 6, 6, 0.5);
 }
 .add-icon {
   font-size: 20px;
@@ -294,7 +303,7 @@
   }
   .details-movies-ul-list-container {
     align-self: center;
-    padding-left: 15px;
+    padding-left: 0px;
   }
 
   .movie-item-details-container {

@@ -14,7 +14,19 @@ import NotFound from './components/NotFoundRoute'
 import MoviesContext from './MoviesContext/MoviesContext'
 
 class App extends Component {
-  state = {popularList: []}
+  state = {popularList: [], watchlist: []}
+
+  componentDidMount() {
+    const retrivedDataFromLocalStorage = localStorage.getItem('watchLaterList')
+    if (retrivedDataFromLocalStorage !== null) {
+      const parsedData = JSON.parse(retrivedDataFromLocalStorage)
+      this.updateStateWatchList(parsedData)
+    }
+  }
+
+  updateStateWatchList = list => {
+    this.setState({watchlist: list})
+  }
 
   addToWatchList = movie => {
     const {watchlist} = this.state
@@ -26,6 +38,8 @@ class App extends Component {
         watchlist: watchlist.filter(eachOne => eachOne.id !== movie.id),
       })
     }
+    const stringifyList = JSON.stringify(watchlist)
+    localStorage.setItem('watchLaterList', stringifyList)
   }
 
   getPopularContext = popularContent => {

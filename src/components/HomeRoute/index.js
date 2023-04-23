@@ -6,6 +6,7 @@ import MovieCarousal from '../MovieCarousal'
 import FooterSection from '../FooterSection'
 
 import Header from '../Header'
+import MoviesContext from '../../MoviesContext/MoviesContext'
 
 const getApiStatus = {
   success: 'SUCCESS',
@@ -193,28 +194,50 @@ class HomeRoute extends Component {
     const topRated = 'https://apis.ccbp.in/movies-app/top-rated-movies'
 
     return (
-      <div className="home-main-container">
-        {this.renderMovieDetailsUl()}
-        <div className="movies-sections-container-home">
-          <h1 className="movies-section-title">Trending Now</h1>
-          <div className="carausal-container">
-            <MovieCarousal apiUrl={trendingUrl} />
-          </div>
-          <h1 className="movies-section-title">Top Rated</h1>
-          <div className="carausal-container">
-            <MovieCarousal apiUrl={topRated} />
-          </div>
-          <h1 className="movies-section-title">Originals</h1>
-          <div className="carausal-container">
-            <MovieCarousal
-              apiUrl={originalUrl}
-              getApiStatusHome={this.getApiStatusHome}
-              getRandomMovieDetails={this.getRandomMovieDetails}
-            />
-          </div>
-        </div>
-        <FooterSection />
-      </div>
+      <MoviesContext.Consumer>
+        {value => {
+          const {watchList} = value
+
+          const renderWatchedList = () => {
+            if (watchList.length > 0) {
+              return (
+                <>
+                  <h1 className="movies-section-title">Watch List</h1>
+                  <div className="carausal-container">
+                    <MovieCarousal movieListDets={watchList} />
+                  </div>
+                </>
+              )
+            }
+            return ''
+          }
+          return (
+            <div className="home-main-container">
+              {this.renderMovieDetailsUl()}
+              <div className="movies-sections-container-home">
+                {renderWatchedList()}
+                <h1 className="movies-section-title">Trending Now</h1>
+                <div className="carausal-container">
+                  <MovieCarousal apiUrl={trendingUrl} />
+                </div>
+                <h1 className="movies-section-title">Top Rated</h1>
+                <div className="carausal-container">
+                  <MovieCarousal apiUrl={topRated} />
+                </div>
+                <h1 className="movies-section-title">Originals</h1>
+                <div className="carausal-container">
+                  <MovieCarousal
+                    apiUrl={originalUrl}
+                    getApiStatusHome={this.getApiStatusHome}
+                    getRandomMovieDetails={this.getRandomMovieDetails}
+                  />
+                </div>
+              </div>
+              <FooterSection />
+            </div>
+          )
+        }}
+      </MoviesContext.Consumer>
     )
   }
 }

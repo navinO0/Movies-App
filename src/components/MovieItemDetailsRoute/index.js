@@ -1,10 +1,13 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {AiOutlinePlus} from 'react-icons/ai'
+import {TiTick} from 'react-icons/ti'
 import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 
 import PopularMoviesCard from '../PopularMoviesCard'
+import MoviesContext from '../../MoviesContext/MoviesContext'
 
 import './index.css'
 import FooterSection from '../FooterSection'
@@ -143,11 +146,46 @@ class MovieItemDetailsRoute extends Component {
     const dispDate = reDate.toLocaleDateString('en-US', options)
 
     return (
-      <>
-        <div
-          className="movie-banner-home"
-          style={{
-            backgroundImage: `
+      <MoviesContext.Consumer>
+        {value => {
+          const {addToWatchList, watchList} = value
+          const onClickWatchLaterBtn = () => {
+            addToWatchList(moviedetails)
+          }
+
+          const renderWatchListBtn = () => {
+            const findMovieObj = watchList.find(
+              eachOne => eachOne.id === moviedetails.id,
+            )
+            if (findMovieObj === undefined) {
+              return (
+                <button
+                  type="button"
+                  className="play-banner-container-add"
+                  onClick={onClickWatchLaterBtn}
+                >
+                  <AiOutlinePlus className="add-icon" />
+                  WATCH LIST
+                </button>
+              )
+            }
+            return (
+              <button
+                type="button"
+                className="play-banner-container-add"
+                onClick={onClickWatchLaterBtn}
+              >
+                <TiTick className="add-icon" />
+                WATCH LIST
+              </button>
+            )
+          }
+          return (
+            <>
+              <div
+                className="movie-banner-home"
+                style={{
+                  backgroundImage: `
             linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
@@ -156,88 +194,86 @@ class MovieItemDetailsRoute extends Component {
     #181818 98.68%,
     #181818 108.61%
   ),url(${backdropPath})`,
-          }}
-        >
-          <Header />
-          <div className="banner-content-super-container">
-            <div className="banner-content-container">
-              <h1 className="movie-item-details-banner-movie-name">{title}</h1>
-              <div className="movie-duration-adult-year">
-                <p className="movie-duration-text">{timeDuration()}</p>
-                <p className="movie-adult-content-text">{ageRist}</p>
-                <p className="movie-release-on-text">{releYr}</p>
+                }}
+              >
+                <Header />
+                <div className="banner-content-super-container">
+                  <div className="banner-content-container">
+                    <h1 className="movie-item-details-banner-movie-name">
+                      {title}
+                    </h1>
+                    <div className="movie-duration-adult-year">
+                      <p className="movie-duration-text">{timeDuration()}</p>
+                      <p className="movie-adult-content-text">{ageRist}</p>
+                      <p className="movie-release-on-text">{releYr}</p>
+                    </div>
+                    <p className="movie-description">{overview}</p>
+                    <div className="play-addtowatch">
+                      <button type="button" className="play-banner-container">
+                        play
+                      </button>
+                      {renderWatchListBtn()}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="movie-description">{overview}</p>
-              <div className="play-addtowatch">
-                <button type="button" className="play-banner-container">
-                  play
-                </button>
-                {/* <button
-                        type="button"
-                        className="play-banner-container-add"
-                        onClick={clickOnWatchLater}
-                      >
-                        <AiOutlinePlus className="add-icon" />
-                        WATCHLIST
-                      </button> */}
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="movie-details-similar-container">
-          <div className="movie-item-details-container">
-            <div className="movie-details-card">
-              <h1 className="details-category-titles">genres</h1>
-              <ul className="details-ul-list-container">
-                {updatedgenres.map(eachOne => {
-                  const {name} = eachOne
-                  return (
-                    <li key={eachOne.id} className="list-item">
-                      <p className="details-li-item">{name}</p>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-            <div className="movie-details-card">
-              <h1 className="details-category-titles">Audio Available</h1>
-              <ul className="details-ul-list-container">
-                {updatedspokenlanguages.map(eachOne => {
-                  const {englishName} = eachOne
-                  return (
-                    <li key={eachOne.id} className="list-item">
-                      <p className="details-li-item">{englishName}</p>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-            <div className="movie-details-card">
-              <h1 className="details-category-titles">Rating Count</h1>
-              <p className="details-li-item">{voteCount}</p>
-              <h1 className="details-category-titles">Rating Average</h1>
-              <p className="details-li-item">{voteAverage}</p>
-            </div>
-            <div className="movie-details-card">
-              <h1 className="details-category-titles">Budget</h1>
-              <p className="details-li-item">{budget}</p>
-              <h1 className="details-category-titles">Release Date</h1>
-              <p className="details-li-item">{dispDate}</p>
-            </div>
-          </div>
-          <div className="similar-movies-list">
-            <h1 className="movies-like-heading">More like this</h1>
-            <ul className="details-movies-ul-list-container">
-              {similarmovies.map(eachOne => (
-                <li key={eachOne.id} className="list-item">
-                  <PopularMoviesCard eachOne={eachOne} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </>
+              <div className="movie-details-similar-container">
+                <div className="movie-item-details-container">
+                  <div className="movie-details-card">
+                    <h1 className="details-category-titles">genres</h1>
+                    <ul className="details-ul-list-container">
+                      {updatedgenres.map(eachOne => {
+                        const {name} = eachOne
+                        return (
+                          <li key={eachOne.id} className="list-item">
+                            <p className="details-li-item">{name}</p>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                  <div className="movie-details-card">
+                    <h1 className="details-category-titles">Audio Available</h1>
+                    <ul className="details-ul-list-container">
+                      {updatedspokenlanguages.map(eachOne => {
+                        const {englishName} = eachOne
+                        return (
+                          <li key={eachOne.id} className="list-item">
+                            <p className="details-li-item">{englishName}</p>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                  <div className="movie-details-card">
+                    <h1 className="details-category-titles">Rating Count</h1>
+                    <p className="details-li-item">{voteCount}</p>
+                    <h1 className="details-category-titles">Rating Average</h1>
+                    <p className="details-li-item">{voteAverage}</p>
+                  </div>
+                  <div className="movie-details-card">
+                    <h1 className="details-category-titles">Budget</h1>
+                    <p className="details-li-item">{budget}</p>
+                    <h1 className="details-category-titles">Release Date</h1>
+                    <p className="details-li-item">{dispDate}</p>
+                  </div>
+                </div>
+                <div className="similar-movies-list">
+                  <h1 className="movies-like-heading">More like this</h1>
+                  <ul className="details-movies-ul-list-container">
+                    {similarmovies.map(eachOne => (
+                      <li key={eachOne.id} className="list-item">
+                        <PopularMoviesCard eachOne={eachOne} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </>
+          )
+        }}
+      </MoviesContext.Consumer>
     )
   }
 

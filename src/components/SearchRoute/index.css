@@ -77,9 +77,7 @@
   }
   .sm-list {
     display: flex;
-    width: 100vw;
-
-    justify-content: flex-start;
+    margin: 0px;
 
     flex-wrap: wrap;
   }

@@ -51,12 +51,22 @@
   align-self: center;
   color: #cbd5e1;
   align-items: center;
+  transition: all ease 400ms;
+}
+
+.nav-link-item:hover {
+  color: rgba(248, 7, 7, 0.973);
+  text-shadow: 0 0 10px rgb(247, 7, 7);
+  color: #fc1008;
+  text-shadow: inset 2 2 2 rgba(247, 6, 6, 0.985),
+    0 0 1.2em rgba(243, 6, 6, 0.5);
 }
 .active-nav-link-item {
   text-decoration: none;
   font-family: 'Roboto';
-
-  color: #ffffff;
+  text-shadow: inset 2 2 2 rgba(247, 6, 6, 0.985),
+    0 0 1.2em rgba(243, 6, 6, 0.5);
+  color: #fa0b0b;
 }
 .header-sub-container {
   width: 80%;

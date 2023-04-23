@@ -100,13 +100,11 @@
 }
 .home-movie-item-details-banner-movie-name {
   animation: text-flicker 5s linear infinite;
-
+  color: #ffffffdc;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 38px;
-
-  color: #e2e8f0;
 }
 
 #offset {
