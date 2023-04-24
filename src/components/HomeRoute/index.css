@@ -145,7 +145,7 @@
 }
 @media screen and (max-width: 576px) {
   .carausal-container {
-    width: 85%;
+    width: 95%;
     height: auto;
   }
   .movies-section-title {
