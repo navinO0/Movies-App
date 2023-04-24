@@ -24,7 +24,7 @@ const responsive = {
   mobile: {
     breakpoint: {max: 464, min: 0},
     items: 3,
-    slidesToSlide: 3,
+    slidesToSlide: 1,
   },
 }
 
@@ -35,8 +35,10 @@ const CostumeCarousel = props => {
       <Carousel
         responsive={responsive}
         autoPlay
+        partialVisible={false}
         autoPlaySpeed={5000}
         infinite
+        itemClass="slider-class-name"
         rewindWithAnimation
         customTransition="all ease 2000ms"
         removeArrowOnDeviceType={['mobile', 'tablet']}
