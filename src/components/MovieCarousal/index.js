@@ -1,13 +1,14 @@
 import {Component} from 'react'
-import Slider from 'react-slick'
+
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 import './index.css'
-import PopularMoviesCard from '../PopularMoviesCard'
+
+import LoaderComponent from '../LoaderComponent'
+import CostumeCarousel from '../CostumeCarousel'
 
 const getApiStatus = {
   success: 'SUCCESS',
@@ -73,7 +74,7 @@ class MovieCarousal extends Component {
     <>
       <div className="carou-react-loader-super-container">
         <div className="loader-container" testid="loader">
-          <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+          <LoaderComponent />
         </div>
       </div>
     </>
@@ -118,77 +119,20 @@ class MovieCarousal extends Component {
   }
 
   renderSlider = () => {
-    const SampleNextArrow = props => {
-      const {className, style} = props
-      return (
-        <div
-          className={className}
-          style={{...style, display: 'none', background: 'red'}}
-        />
-      )
-    }
-
-    const SamplePrevArrow = props => {
-      const {className, style} = props
-      return (
-        <div
-          className={className}
-          style={{...style, display: 'none', background: 'green'}}
-        />
-      )
-    }
     const {trendingVideos} = this.state
-    const settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 5,
-      slidesToScroll: 5,
-
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 4,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            nextArrow: <SampleNextArrow />,
-            prevArrow: <SamplePrevArrow />,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-          },
-        },
-        {
-          breakpoint: 480,
-
-          settings: {
-            nextArrow: <SampleNextArrow />,
-            prevArrow: <SamplePrevArrow />,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-          },
-        },
-      ],
-    }
 
     return (
-      <div className="slider-main-container">
-        <Slider {...settings}>
-          {trendingVideos.map(eachOne => (
-            <PopularMoviesCard key={eachOne.id} eachOne={eachOne} />
-          ))}
-        </Slider>
-      </div>
+      <>
+        <div className="slider-main-container">
+          <CostumeCarousel movieListDets={trendingVideos} />
+        </div>
+      </>
     )
   }
 
   render() {
     return (
-      <div className="main-container">
+      <div className="main-container-carousals">
         <div className="slick-container">{this.renderMovieDetailsUl()}</div>
       </div>
     )

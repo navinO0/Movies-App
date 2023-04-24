@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
+
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
@@ -7,6 +7,7 @@ import Header from '../Header'
 import PaginationComponent from '../PaginationComponent'
 import './index.css'
 import FooterSection from '../FooterSection'
+import LoaderComponent from '../LoaderComponent'
 
 const getApiStatus = {
   success: 'SUCCESS',
@@ -84,7 +85,7 @@ class PopularRoute extends Component {
     <>
       <div className="react-loader-super-container">
         <div className="loader-container" testid="loader">
-          <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+          <LoaderComponent />
         </div>
       </div>
     </>

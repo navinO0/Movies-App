@@ -2,7 +2,6 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {TiTick} from 'react-icons/ti'
-import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 
@@ -11,6 +10,7 @@ import MoviesContext from '../../MoviesContext/MoviesContext'
 
 import './index.css'
 import FooterSection from '../FooterSection'
+import LoaderComponent from '../LoaderComponent'
 
 const getApiStatus = {
   success: 'SUCCESS',
@@ -282,7 +282,7 @@ class MovieItemDetailsRoute extends Component {
       <Header />
       <div className="react-loader-super-container">
         <div className="loader-container" testid="loader">
-          <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+          <LoaderComponent />
         </div>
       </div>
     </>

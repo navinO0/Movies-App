@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
+
 import Cookies from 'js-cookie'
 import './index.css'
 import MovieCarousal from '../MovieCarousal'
@@ -7,6 +7,7 @@ import FooterSection from '../FooterSection'
 
 import Header from '../Header'
 import MoviesContext from '../../MoviesContext/MoviesContext'
+import LoaderComponent from '../LoaderComponent'
 
 const getApiStatus = {
   success: 'SUCCESS',
@@ -130,7 +131,7 @@ class HomeRoute extends Component {
       <Header />
       <div className="home-react-loader-super-container">
         <div className="loader-container" testid="loader">
-          <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+          <LoaderComponent />
         </div>
       </div>
     </>
@@ -233,6 +234,7 @@ class HomeRoute extends Component {
                   />
                 </div>
               </div>
+
               <FooterSection />
             </div>
           )

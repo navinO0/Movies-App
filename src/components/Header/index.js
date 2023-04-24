@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 
 import {HiOutlineSearch} from 'react-icons/hi'
+
 import './index.css'
 
 const lgOptions = [
@@ -105,11 +106,11 @@ class Header extends Component {
 
                     const actived =
                       match.path === linkRoute
-                        ? 'active-nav-link-item'
-                        : 'nav-link-item'
+                        ? 'active-nav-link-item hover-underline-animation'
+                        : 'nav-link-item hover-underline-animation'
                     return (
                       <li className="header-list-item" key={id}>
-                        <Link to={linkRoute} className={actived}>
+                        <Link to={linkRoute} className="link-item">
                           <p className={actived}>{displayText}</p>
                         </Link>
                       </li>
